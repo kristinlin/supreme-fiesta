@@ -15,7 +15,11 @@ int main() {
 
   edges = new_matrix(4, 4);
 
-  add_edge(edges, 0, 0, 0, 100, 100, 100);
+  c.red = 255;
+
+  add_edge(edges, 0, 0, 0, 100, 100, 0);
+  add_edge(edges, 100, 100, 0, 300, 100, 0);
+  add_edge(edges, 300, 100, 0, 300, 300, 0);
   print_matrix(edges);
   draw_lines(edges, s, c);
   

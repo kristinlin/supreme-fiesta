@@ -14,9 +14,12 @@ print the matrix
 void print_matrix(struct matrix *m) {
   int row; 
   int col;
+  int lastcol = m->lastcol;
+  printf("THIS IS YOUR LAST COL: %d\n", lastcol);
+  printf("THIS IS THE NUM: %g\n", m->m[3][3]);
   for (row = 0; row<4; row++) {
-    for(col=0; col < m->lastcol; col++) {
-      printf("%g ", m->m[row][col]);
+    for(col=0; col < lastcol; col++) {
+      printf("%-5g ", m->m[row][col]);
     }
     printf("\n");
   }

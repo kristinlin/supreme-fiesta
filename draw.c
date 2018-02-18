@@ -19,9 +19,7 @@ void add_point( struct matrix * points, double x, double y, double z) {
   if (points->lastcol == points->cols) {
     grow_matrix(points, 2 * points->cols);
   }
-  printf("Filling matrix\n");
   points->m[0][points->lastcol] = x;
-  printf("Here's the first number: %g\n", points->m[0][points->lastcol]);
   points->m[1][points->lastcol] = y;
   points->m[2][points->lastcol] = z;
   points->m[3][points->lastcol] = 1;
@@ -52,13 +50,10 @@ to the screen
 ====================*/
 void draw_lines( struct matrix * points, screen s, color c) {
   int edge;
-  printf("WHAT?\n");
   for (edge = 0; edge < points->lastcol; edge += 2) {
-    printf("(%g, %g) to (%g, %g)\n", points->m[edge][0], points->m[edge+1][0], 
-	   points->m[edge][1], points->m[edge+1][1]);
-      draw_line(points->m[edge][0], points->m[edge+1][0], 
-		points->m[edge][1], points->m[edge+1][1], 
-		s, c);
+    draw_line(points->m[0][edge], points->m[1][edge], 
+	     points->m[0][edge+1], points->m[1][edge+1], 
+	      s, c);
   }
 }
 
