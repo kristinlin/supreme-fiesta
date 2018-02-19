@@ -59,7 +59,6 @@ void draw_lines( struct matrix * points, screen s, color c) {
 
 
 
-
 //==========================================================
 // BRESENHAM'S LINE ALGO
 

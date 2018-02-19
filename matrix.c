@@ -12,11 +12,8 @@ Returns:
 print the matrix
 */
 void print_matrix(struct matrix *m) {
-  int row; 
-  int col;
+  int row, col;
   int lastcol = m->lastcol;
-  printf("THIS IS YOUR LAST COL: %d\n", lastcol);
-  printf("THIS IS THE NUM: %g\n", m->m[3][3]);
   for (row = 0; row<4; row++) {
     for(col=0; col < lastcol; col++) {
       printf("%-5g ", m->m[row][col]);
@@ -32,8 +29,7 @@ Returns:
 turns m in to an identity matrix
 */
 void ident(struct matrix *m) {
-  int row; 
-  int col;
+  int row, col;
   for (row = 0; row<4; row++) {
     for(col=0; col<4; col++) {
       if (row == col) {
@@ -43,6 +39,7 @@ void ident(struct matrix *m) {
       }
     }
   }
+  m->lastcol = 4;
 }
 
 
@@ -54,6 +51,27 @@ Returns:
 a*b -> b
 */
 void matrix_mult(struct matrix *a, struct matrix *b) {
+
+  //copy matrix b into new matrix
+  struct matrix * copied;
+  copied = new_matrix(4, b->lastcol);
+  copy_matrix( b, copied );
+
+  //traversing b to fill in
+  int row, col, curr, move;
+  for (col = 0; col < b->lastcol; col++) {
+    for (row = 0; row < 4; row++) {
+      curr = 0;
+      //traversing appropriate cols/rows to calculate value
+      for (move = 0; move < 4; move++) {
+	curr += a->m[row][move] * copied->m[move][col];
+      }
+      b->m[row][col] = curr;
+    }
+  }
+
+  //free copied
+  free_matrix( copied );
 }
 
 
