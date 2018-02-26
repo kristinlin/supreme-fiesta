@@ -20,6 +20,7 @@ int main() {
   identity = new_matrix(4, 4);
   mult = new_matrix(4, 1);
 
+  clear_screen(s);
   
   //==================================================
   // Testing matrix methods
